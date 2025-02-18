@@ -1,0 +1,26 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Просмотр заказа #{{ order.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Заказ #{{ order.id }}</h2>
+    <p><strong>Стол:</strong> {{ order.table_number }}</p>
+
+    <h3>Блюда:</h3>
+    <ul>
+        {% for item in order.items %}
+            <li>{{ item.name }} - {{ item.price }} руб.</li>
+        {% empty %}
+            <li>Нет данных</li>
+        {% endfor %}
+    </ul>
+
+    <p><strong>Общая стоимость:</strong> {{ order.total_price }} руб.</p>
+    <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+
+    <a href="{% url 'orders:order_update' order.id %}" class="btn">Редактировать</a>
+    <a href="{% url 'orders:order_delete' order.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'orders:order_list' %}" class="btn">Назад к списку</a>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Заказы{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/normalize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="nav-links">
+            <a href="{% url 'orders:order_list' %}">Список заказов</a>
+            <a href="{% url 'orders:order_create' %}">Добавить заказ</a>
+            <a href="{% url 'orders:revenue' %}">Выручка за смену</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        &copy; 2025
+    </footer>
+</div>
+
+</body>
+</html>
